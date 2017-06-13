@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Q5</title>
+</head>
+<body>
+<h1>Employee Data</h1>
+<p id="allEmployeeDetails"></p>
+<h2>Employees with Salaries greater than 5000</h2>
+<p id="empSalGt5k"></p>
+<h2>Employees grouped on the basis of ages</h2>
+<h4 id="age"></h4>
+<p id="emp"></p>
+<h2>Employees with salary less than 1000 and age greater than 20</h2>
+<p id="empLt1k"></p>
+<script type="text/javascript">
+
+	function createEmployee(name,age,salary,dob){
+		var Employee={
+			name:name,
+			age:age,
+			salary:salary,
+			dob:dob,
+         setSal:function(sal){
+            salary:sal;
+         },
+			toString:function(){
+				return "<table border='1'><tr>"+"<td><strong>Employee name : "+name+"</strong></td><td>Age : "+age+"</td><td>Salary : "+salary+"</td><td>DOB : "+dob +"</td></tr></table>";
+			}
+		};
+
+		return Employee;	   
+   }
+   
+   var Employee1=createEmployee("Ram",34,23300,"10-10-1992");
+   var Employee2=createEmployee("Sham",14,23300,"10-10-1992");
+   var Employee3=createEmployee("Kunal",21,300,"10-10-1994");
+   var Employee4=createEmployee("Somya",21,4300,"10-10-1994");
+  
+   
+   var empSalGreaterThan5k=[];
+   var k=0;
+   var arr=[Employee1,Employee2,Employee3,Employee4];
+   
+   for(var i=0;i<4;i++)
+   {
+      document.getElementById("allEmployeeDetails").innerHTML=document.getElementById("allEmployeeDetails").innerHTML+arr[i].toString();
+   }
+
+   for(var i=0;i<4;i++)
+   {
+   		if(arr[i].salary>5000)
+   		{
+   			empSalGreaterThan5k[k++]=arr[i];
+            document.getElementById("empSalGt5k").innerHTML=document.getElementById("empSalGt5k").innerHTML+empSalGreaterThan5k[k-1].toString();
+   			
+   		}
+   }
+
+   var mySet = new Set();
+   for(var i=0;i<4;i++)
+   {
+   		mySet.add(arr[i].age);
+   }
+   
+   var ages=[];
+   var i=0;
+   for (let item of mySet) 
+   {		
+   	ages[i++]=item;
+   }
+   	
+	
+   var size=mySet.size;
+   var list=new Array(size);
+
+
+   for(var j=0;j<mySet.size;j++)
+   {
+  		list[j]=new Array();
+  		var t=0;
+   		for(var k=0;k<4;k++)
+   		{
+   			if(arr[k].age==ages[j])
+   				list[j][t++]=arr[k];
+   		}
+   }
+   for(var l=0;l<mySet.size;l++)
+   {
+   		document.getElementById("emp").innerHTML=document.getElementById("emp").innerHTML+ages[l]+"</br>";
+
+         //console.log("age : "+ages[l]);
+   		for(var k=0;k<list[l].length;k++)
+   		{
+   			document.getElementById("emp").innerHTML=document.getElementById("emp").innerHTML+list[l][k].toString();
+            //console.log(list[l][k].toString());
+   		}
+
+   }
+
+   var emp=new Array();
+   var q=0;
+ 	for(var i=0;i<4;i++)
+   {
+   		if(arr[i].salary<1000 && arr[i].age>20)
+   		{
+   			
+            document.getElementById('empLt1k').innerHTML=document.getElementById('empLt1k').innerHTML+arr[i].toString();
+
+            arr[i].salary=arr[i].salary*5;
+            arr[i].setSal(arr[i].salary);
+   			emp[q++]=arr[i];
+   		}
+   }
+   
+  for(var i=0;i<emp.length;i++){
+      console.log(emp[i]);
+   }
+
+</script>
+</body>
+</html>

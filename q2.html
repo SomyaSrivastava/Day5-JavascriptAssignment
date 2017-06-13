@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Q2</title>
+</head>
+<body>
+<header>
+
+</header>
+<footer>
+	<script type="text/javascript">
+		var str=prompt("Enter a string");
+		//alert(str.length);
+		var n=str.length;
+		var i=0;
+		var j=n-1;
+		var flag=true;
+		for(i=0,j=n-1;i<n,j>=0;i++,j--)
+		{
+			if(str[i]!=str[j])
+				{flag=false;break;}
+		}
+		if(flag==true)
+			alert(str+" is a palindrome");
+		else
+			alert(str+" is not a palindrome");
+	</script>
+</footer>
+</body>
+</html>
